@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weather_nav"
+    app:startDestination="@id/weatherForecastsFragment">
+
+    <fragment
+        android:id="@+id/weatherForecastsFragment"
+        android:name="com.openweathermap.weatherforecast.views.fragment.WeatherForecastsFragment"
+        android:label="fragment_weather_forecasts"
+        tools:layout="@layout/fragment_weather_forecasts">
+        <action
+            android:id="@+id/navigate_to_detailed_fragment"
+            app:destination="@id/detailedWeatherForecastFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailedWeatherForecastFragment"
+        android:name="com.openweathermap.weatherforecast.views.fragment.DetailedWeatherForecastFragment"
+        android:label="fragment_detailed_weather_forecast"
+        tools:layout="@layout/fragment_detailed_weather_forecast">
+        <action
+            android:id="@+id/navigate_to_list_fragment"
+            app:destination="@id/weatherForecastsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+        <argument
+            android:name="cityId"
+            app:argType="integer" />
+    </fragment>
+</navigation>
