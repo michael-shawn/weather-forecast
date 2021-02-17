@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.openweathermap.weatherforecast.viewmodels.DetailedWeatherForecastsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0"
+            android:layout_marginBottom="@dimen/dp_8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_top"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="@dimen/dp_38" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_start"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/dp_24" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_end"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/dp_24" />
+
+                <ToggleButton
+                    android:id="@+id/toggle_button_favorite"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@drawable/toggle_selector"
+                    android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                    android:textOff=""
+                    android:textOn=""
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                    app:layout_constraintTop_toTopOf="@id/guideline_top"
+                    tools:ignore="UnusedAttribute"
+                    tools:targetApi="m" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_city_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:text="@{ viewModel.cityName }"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_24"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/toggle_button_favorite"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/text_view_current_temperature"
+                    app:layout_constraintTop_toTopOf="@id/guideline_top" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_current_temperature"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_24"
+                    android:text="@{ viewModel.currentTemperature }"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_38"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toStartOf="@id/guideline_start"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_city_name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_weather_status"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:text="@{ viewModel.weatherStatus }"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    app:layout_constraintBottom_toTopOf="@id/text_view_high_and_low_temperature"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/text_view_current_temperature"
+                    app:layout_constraintTop_toTopOf="@id/text_view_current_temperature"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_view_high_and_low_temperature"
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_8"
+                    android:text="@{ viewModel.highLowTemperature }"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp_16"
+                    app:layout_constraintBottom_toBottomOf="@id/text_view_current_temperature"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_end"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/text_view_current_temperature"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_weather_status" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
